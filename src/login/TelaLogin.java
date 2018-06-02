@@ -16,9 +16,8 @@ import javax.swing.JLabel;
 
 import interfaces.Tela;
 
-public class TelaLogin {
+public class TelaLogin extends JFrame {
 	
-	private JFrame frame;
 
 	private JPasswordField txtSenha;
 	
@@ -26,33 +25,25 @@ public class TelaLogin {
 	
 	public TelaLogin(Tela telaAposOLogin) {
 		this.telaAposOLogin = telaAposOLogin;
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		setFrame(new JFrame());
-		getFrame().setBounds(100, 100, 203, 235);
-		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getFrame().getContentPane().setLayout(null);
+		this.setBounds(100, 100, 203, 235);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.getContentPane().setLayout(null);
 		
 		TextField txtLogin = new TextField();
 		txtLogin.setBounds(10, 41, 167, 22);
-		getFrame().getContentPane().add(txtLogin);
+		this.getContentPane().add(txtLogin);
 		
 		JLabel lblUsuario = new JLabel("Usuario");
 		lblUsuario.setBounds(10, 21, 46, 14);
-		getFrame().getContentPane().add(lblUsuario);
+		this.getContentPane().add(lblUsuario);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(10, 69, 46, 14);
-		getFrame().getContentPane().add(lblSenha);
+		this.getContentPane().add(lblSenha);
 		
 		txtSenha = new JPasswordField();
 		txtSenha.setBounds(10, 94, 167, 22);
-		getFrame().getContentPane().add(txtSenha);
+		this.getContentPane().add(txtSenha);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
@@ -60,7 +51,7 @@ public class TelaLogin {
 				@SuppressWarnings("deprecation")
 				Usuario teste = new Usuario(txtLogin.getText().toLowerCase(),txtSenha.getText().toLowerCase());
 				if(logar(teste)) {
-					frame.setVisible(false);
+					setVisible(false);
 				}
 				else {
 					System.out.println("2");
@@ -68,8 +59,8 @@ public class TelaLogin {
 			}
 		});
 		btnLogin.setBounds(10, 137, 167, 48);
-		getFrame().getContentPane().add(btnLogin);
-		frame.setVisible(true);
+		this.getContentPane().add(btnLogin);
+		this.setVisible(true);
 	}
 	
 	@SuppressWarnings("resource")
@@ -121,13 +112,5 @@ public class TelaLogin {
 		}
 		System.out.println("ruim");
 		return false;
-	}
-
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
 	}
 }
